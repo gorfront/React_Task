@@ -11,7 +11,6 @@ export async function importFakeProducts() {
     image: item.image,
   }));
 
-  // Sequential import (можно заменить на параллельный при необходимости)
   for (const product of formatted) {
     try {
       await api.post("/products", product);
