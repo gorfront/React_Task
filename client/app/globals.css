@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+    --color-secondary: oklch(48.47% 0.045 266.89);
+    --color-secondary-dark: oklch(75% 0.07 266.89);
+    --color-tmdbLightBlue: oklch(70.38% 0.181 219.42);
+    --color-tmdbLightBlue-dark: oklch(35% 0.12 219.42);
+    --color-newGray: oklch(0 0 0 / 0.6);
+    --color-newGray-dark: oklch(0 0 0 / 0.8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Source Sans Pro",
+        Arial,
+        sans-serif;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+.input {
+    @apply border rounded-md p-2 bg-gray-100 text-black focus:outline-blue-400;
+}
