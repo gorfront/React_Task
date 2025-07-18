@@ -18,8 +18,6 @@ const AddPhoto = ({ setPhoto, type, avatar }: AddPhotoProps) => {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [uploading, setUploading] = useState(false);
 
-  console.log({ avatar });
-
   useEffect(() => {
     if (!avatar) {
       setFile(null);
