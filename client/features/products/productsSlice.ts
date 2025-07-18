@@ -41,7 +41,6 @@ export const fetchProducts = createAsyncThunk<
   }
 });
 
-
 export const createProduct = createAsyncThunk(
   "products/create",
   async (

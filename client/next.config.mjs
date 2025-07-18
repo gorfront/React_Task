@@ -18,6 +18,7 @@ const nextConfig = {
       "encrypted-tbn2.gstatic.com",
       "www.gomatch.nl",
       "localhost",
+      "via.placeholder.com",
     ],
   },
 };

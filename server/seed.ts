@@ -40,7 +40,7 @@ async function seed() {
       {
         name: "Sample Product B",
         price: 200,
-        image: "https://via.placeholder.com/150",
+        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
         description: "Another product",
         owner: user._id,
       },

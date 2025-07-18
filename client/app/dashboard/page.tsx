@@ -10,12 +10,12 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import SearchInput from "@/components/Search";
 import ReactLoading from "react-loading";
+// import { importFakeProducts } from "@/lib/importFakeProducts";
 
 export default function DashboardPage() {
   const [search, setSearch] = useState("");
   const dispatch = useAppDispatch();
   const router = useRouter();
-
   const { products, loading, error } = useAppSelector(
     (state) => state.products
   );
@@ -31,7 +31,7 @@ export default function DashboardPage() {
   }, [search, dispatch]);
 
   const filtered = showOnlyMine
-    ? products.filter((p) => p.owner._id === authUser?._id)
+    ? products.filter((p) => p.owner?._id === authUser?._id)
     : products;
 
   const handleDelete = (id: string) => {
@@ -47,8 +47,21 @@ export default function DashboardPage() {
       <SearchInput value={search} setValue={setSearch} />
 
       {authUser && (
-        <div className="!mb-4 flex items-center space-x-2">
+        <div className="!mb-4 flex items-center gap-2 space-x-2">
           <label className="flex items-center gap-2 text-gray-700 text-sm cursor-pointer">
+            {/* <button
+              onClick={async () => {
+                const ok = confirm("Իմպորտե՞լ fake ապրանքները։");
+                if (ok) {
+                  await importFakeProducts();
+                  dispatch(fetchProducts());
+                  alert("Իմպորտն ավարտված է");
+                }
+              }}
+              className="mt-6 bg-purple-600 text-white !px-4 !py-2 rounded disabled:opacity-50"
+            >
+              "Import fake products"
+            </button> */}
             <input
               type="checkbox"
               checked={showOnlyMine}
@@ -57,6 +70,7 @@ export default function DashboardPage() {
             />
             <span>Only my products</span>
           </label>
+          <p>({products.length})</p>
         </div>
       )}
 
@@ -78,7 +92,7 @@ export default function DashboardPage() {
                   className="border rounded-lg shadow hover:shadow-md transition bg-white !p-4 relative group cursor-pointer"
                   onClick={() => router.push(`/product/${product._id}`)}
                 >
-                  {authUser?._id === product.owner._id && (
+                  {authUser?._id && authUser?._id === product.owner?._id && (
                     <span className="absolute top-2 right-2 bg-green-600 text-white !px-2 !py-0.5 text-xs rounded">
                       My product
                     </span>
@@ -111,10 +125,10 @@ export default function DashboardPage() {
                   )}
 
                   <p className="text-sm !mt-1 text-gray-500">
-                    Owner: {product.owner.firstName} {product.owner.lastName}
+                    Owner: {product.owner?.firstName} {product.owner?.lastName}
                   </p>
 
-                  {authUser?._id === product.owner._id && (
+                  {authUser?._id === product.owner?._id && (
                     <div
                       className="!mt-3 flex gap-3 text-sm z-10"
                       onClick={(e) => e.stopPropagation()}
