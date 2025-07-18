@@ -25,7 +25,6 @@ app.use("/api/upload", uploadRouter);
 mongoose
   .connect(process.env.MONGO_URI as string)
   .then(() => {
-    console.log("MongoDB connected");
     app.listen(PORT, "0.0.0.0", () =>
       console.log(`Server running on port ${PORT}`)
     );
